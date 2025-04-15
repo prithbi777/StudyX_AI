@@ -13,7 +13,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # CONFIGURE STREAMLIT PAGE
 st.set_page_config(
-    page_title="StudyX AI",
+    page_title="StudyXAI",
     page_icon="📚",
     layout="centered"
 )
