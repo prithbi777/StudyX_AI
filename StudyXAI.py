@@ -92,6 +92,7 @@ if mode == "Relax Mode":
 
     # Initialize pygame mixer
     if "music_initialized" not in st.session_state:
+        pygame.mixer.pre_init(frequency=22050, size=-16, channels=2, buffer=4096)
         pygame.mixer.init()
         st.session_state.music_initialized = True
         st.session_state.is_playing = False
