@@ -20,7 +20,7 @@
 ![Loading](screenshots/p3.png)  
 ![Loading](screenshots/p4.png)  
 ![Loading](screenshots/p5.png)  
-![Loading](screenshots/p6.png)  
+
 
 
 
