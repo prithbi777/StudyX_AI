@@ -53,6 +53,10 @@ def generate_response(prompt, max_tokens=150):
     except Exception as e:
         return f"Error: {e}"
 
+
+
+
+
 # RELAX MODE
 if mode == "Relax Mode":
     st.subheader("🎵 Relax Mode - Music Player")
@@ -83,9 +87,8 @@ if mode == "Relax Mode":
         # Find the song object based on selection
         song_to_play = next(song for song in st.session_state.uploaded_songs if song.name == selected_song)
 
-        # Play the song automatically when the button is clicked
         if st.button(f"▶️ Play {song_to_play.name}"):
-            st.audio(song_to_play, format="audio/mp3", start_time=0)
+            st.audio(song_to_play, format="audio/mp3")
             st.success(f"Playing: {song_to_play.name}")
 
     else:
@@ -94,42 +97,7 @@ if mode == "Relax Mode":
 
 
 
-# # RELAX MODE
-# if mode == "Relax Mode":
-#     st.subheader("🎵 Relax Mode - Music Player")
 
-#     # Initialize uploaded songs list if not present
-#     if "uploaded_songs" not in st.session_state:
-#         st.session_state.uploaded_songs = []
-
-#     # File uploader for song selection (multiple songs allowed)
-#     uploaded_file = st.file_uploader("Choose a song", type=["mp3", "wav"], key="song_uploader", accept_multiple_files=True)
-
-#     # If files are uploaded, add them to the session state
-#     if uploaded_file:
-#         for file in uploaded_file:
-#             if file.name not in [song.name for song in st.session_state.uploaded_songs]:
-#                 st.session_state.uploaded_songs.append(file)
-#                 st.success(f"Uploaded: {file.name}")
-
-#     # Show the list of uploaded songs
-#     if st.session_state.uploaded_songs:
-#         st.write("### Uploaded Songs:")
-#         for song in st.session_state.uploaded_songs:
-#             st.markdown(f"- {song.name}")
-
-#         # Select song from the uploaded list to play
-#         selected_song = st.selectbox("Select a song to play", [song.name for song in st.session_state.uploaded_songs])
-
-#         # Find the song object based on selection
-#         song_to_play = next(song for song in st.session_state.uploaded_songs if song.name == selected_song)
-
-#         if st.button(f"▶️ Play {song_to_play.name}"):
-#             st.audio(song_to_play, format="audio/mp3")
-#             st.success(f"Playing: {song_to_play.name}")
-
-#     else:
-#         st.warning("No songs uploaded yet. Please upload a song to start.")
 
 
 # OTHER MODES
