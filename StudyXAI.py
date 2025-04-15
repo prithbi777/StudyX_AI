@@ -3,7 +3,6 @@ import os
 import streamlit as st
 import openai
 from dotenv import load_dotenv
-import pygame
 import atexit
 
 # LOAD ENV VARIABLES FROM .ENV FILE
@@ -54,72 +53,23 @@ def generate_response(prompt, max_tokens=150):
     except Exception as e:
         return f"Error: {e}"
 
-# MUSIC PLAYER FUNCTIONS
-def play_song(uploaded_file):
-    # Save the uploaded file to a temporary location
-    with open("uploaded_song.mp3", "wb") as f:
-        f.write(uploaded_file.getbuffer())
-    pygame.mixer.music.load("uploaded_song.mp3")
-    pygame.mixer.music.play()
-    st.session_state.is_playing = True
-    st.session_state.is_paused = False
-
-def pause_song():
-    pygame.mixer.music.pause()
-    st.session_state.is_paused = True
-
-def resume_song():
-    pygame.mixer.music.unpause()
-    st.session_state.is_paused = False
-
-def stop_song():
-    pygame.mixer.music.stop()
-    st.session_state.is_playing = False
-    st.session_state.is_paused = False
-
-# Stop music when app exits
-def stop_music_on_exit():
-    try:
-        pygame.mixer.music.stop()
-    except:
-        pass
-
-atexit.register(stop_music_on_exit)
-
 # RELAX MODE
 if mode == "Relax Mode":
     st.subheader("🎵 Relax Mode - Music Player")
-
-    # Initialize pygame mixer
-    if "music_initialized" not in st.session_state:
-        pygame.mixer.pre_init(frequency=22050, size=-16, channels=2, buffer=4096)
-        pygame.mixer.init()
-        st.session_state.music_initialized = True
-        st.session_state.is_playing = False
-        st.session_state.is_paused = False
-        st.session_state.current_song = None
 
     # File uploader for song selection
     uploaded_file = st.file_uploader("Choose a song", type=["mp3", "wav"])
 
     if uploaded_file is not None:
+        # Display an audio player for the uploaded song
+        st.audio(uploaded_file, format="audio/mp3")
+
         if st.button("▶️ Play Uploaded Song"):
-            play_song(uploaded_file)
             st.success(f"Playing: {uploaded_file.name}")
-
         if st.button("⏸ Pause"):
-            if st.session_state.is_playing and not st.session_state.is_paused:
-                pause_song()
-                st.info("Music paused.")
-
-        if st.button("▶️ Resume"):
-            if st.session_state.is_paused:
-                resume_song()
-                st.success("Music resumed.")
-
+            st.info("Pause feature not supported in this mode.")
         if st.button("⏹ Stop"):
-            stop_song()
-            st.warning("Music stopped.")
+            st.warning("Stop feature not supported in this mode.")
 
 # OTHER MODES
 else:
