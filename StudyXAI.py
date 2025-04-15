@@ -107,9 +107,6 @@ if mode == "Relax Mode":
             st.audio(song_to_play, format="audio/mp3")
             st.success(f"Playing: {song_to_play.name}")
 
-        if st.button(f"⏹ Stop {song_to_play.name}"):
-            st.warning(f"Stop feature not supported in this mode.")
-        
     else:
         st.warning("No songs uploaded yet. Please upload a song to start.")
 
