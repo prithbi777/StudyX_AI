@@ -1,0 +1,5 @@
+deactivate  # Deactivate the current environment
+rm -rf myenv  # Remove the old environment
+python3 -m venv myenv  # Create a new virtual environment
+source myenv/bin/activate  # Activate the new environment
+pip install streamlit openai python-dotenv pygame  # Install packages
