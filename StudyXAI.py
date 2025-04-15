@@ -55,10 +55,11 @@ def generate_response(prompt, max_tokens=150):
         return f"Error: {e}"
 
 # MUSIC PLAYER FUNCTIONS
-def play_song(song_path):
-    if pygame.mixer.music.get_busy():
-        pygame.mixer.music.stop()
-    pygame.mixer.music.load(song_path)
+def play_song(uploaded_file):
+    # Save the uploaded file to a temporary location
+    with open("uploaded_song.mp3", "wb") as f:
+        f.write(uploaded_file.getbuffer())
+    pygame.mixer.music.load("uploaded_song.mp3")
     pygame.mixer.music.play()
     st.session_state.is_playing = True
     st.session_state.is_paused = False
@@ -97,18 +98,13 @@ if mode == "Relax Mode":
         st.session_state.is_paused = False
         st.session_state.current_song = None
 
-    music_dir = "//media//prithbi//Prithbiraj//Python//Music_Player_Using_Python//Songs"
+    # File uploader for song selection
+    uploaded_file = st.file_uploader("Choose a song", type=["mp3", "wav"])
 
-    try:
-        song_files = os.listdir(music_dir)
-        song_titles = [file.title() for file in song_files]
-        selected_song = st.selectbox("🎶 Select a song to play:", song_titles)
-
-        if st.button("▶️ Play Selected Song"):
-            song_path = os.path.join(music_dir, song_files[song_titles.index(selected_song)])
-            play_song(song_path)
-            st.session_state.current_song = song_path
-            st.success(f"Playing: {selected_song}")
+    if uploaded_file is not None:
+        if st.button("▶️ Play Uploaded Song"):
+            play_song(uploaded_file)
+            st.success(f"Playing: {uploaded_file.name}")
 
         if st.button("⏸ Pause"):
             if st.session_state.is_playing and not st.session_state.is_paused:
@@ -123,9 +119,6 @@ if mode == "Relax Mode":
         if st.button("⏹ Stop"):
             stop_song()
             st.warning("Music stopped.")
-
-    except Exception as e:
-        st.error(f"Failed to load music: {e}")
 
 # OTHER MODES
 else:
