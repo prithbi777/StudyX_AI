@@ -2,6 +2,8 @@
 
 **StudyX AI** is your all-in-one academic companion built with **Streamlit** and **OpenAI's GPT API**. Whether you're looking to chat, get your questions answered, summarize study notes, generate quizzes, or just relax with music — StudyX AI has got you covered.
 
+# Live Demo: https://studyxai.streamlit.app/
+
 ---
 
 ## ✨ Features
