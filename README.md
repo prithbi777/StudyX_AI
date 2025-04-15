@@ -12,7 +12,22 @@
 - 🧠 **Generate Quiz** – Generate multiple-choice quizzes on any topic with correct answers.
 - 🎵 **Relax Mode** – Unwind with your favorite music using the built-in music player.
 
----
+---  
+
+## Photos
+![Loading](screenshots/p1.png)  
+![Loading](screenshots/p2.png)  
+![Loading](screenshots/p3.png)  
+![Loading](screenshots/p4.png)  
+![Loading](screenshots/p5.png)  
+![Loading](screenshots/p6.png)  
+
+
+
+---  
+
+
+
 
 ## 🚀 Tech Stack
 
