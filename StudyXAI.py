@@ -40,7 +40,7 @@ with st.sidebar:
         "**Choose a mode:**",
         ("Chat Mode", "Answer Questions", "Summarize Notes", "Generate Quiz", "Relax Mode"),
         index=0
-    )
+    ) 
 
 # FUNCTION TO GENERATE AI RESPONSE
 def generate_response(prompt, max_tokens=150):
